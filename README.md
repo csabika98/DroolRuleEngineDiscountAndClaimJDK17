@@ -3,8 +3,32 @@
 
 ## Overview
 
-1. ** Spring Boot application that integrates the Drools rule engine to process business rules for order discounts and claim risk levels.
-2. This application allows for dynamic rule management, enabling you to define, update, and apply custom rules to orders and claims via a RESTful API.
+1. <b>Spring Boot application that integrates the Drools rule engine to process business rules for order discounts and claim risk levels.</b>
+2. <b>This application allows for dynamic rule management, enabling you to define, update, and apply custom rules to orders and claims via a RESTful API.</b>
+
+## Key Features
+
+- **Dynamic Rule Management**: Define new rules for orders and claims via the API.
+- **Drools Integration**: Leverage the Drools engine to process complex business logic.
+- **REST API**: Expose endpoints to apply rules to orders and claims.
+- **Persistence**: Store rules using Spring Data JPA with an underlying database.
+
+## Screenshots, test scenario #1
+
+### 1. Creating new rule, if CardType=Visa, and price more than $4000, discount set to 50%
+![CreatingNewRule](screenshots/image.png)
+### 2. We are apply the new rule, CardType=Visa, and price more than $4000, so our discount is 50%, 
+![ApplyNewRule](screenshots/image-1.png)
+### 2.1 If we use MasterCard, discount is 0, as no rule set for MasterCard
+![ApplyNewRule2](screenshots/image-2.png)
+
+## Screnshots, test scenario #2
+### 1. We can edit Claim rules based on what we want, we can define/create new rules
+![EditRule](screenshots/image-3.png)
+
+![EditRule2](screenshots/image-4.png)
+
+
 
 The project implements two key functionalities:
 
@@ -13,12 +37,6 @@ The project implements two key functionalities:
 
 You can easily add, manage, and update rules through the provided API.
 
-## Key Features
-
-- **Dynamic Rule Management**: Define new rules for orders and claims via the API.
-- **Drools Integration**: Leverage the Drools engine to process complex business logic.
-- **REST API**: Expose endpoints to apply rules to orders and claims.
-- **Persistence**: Store rules using Spring Data JPA with an underlying database.
 
 ## Project Structure
 
