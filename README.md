@@ -1,9 +1,10 @@
 
-# DroolEngineProject
+# DroolRuleEngineDiscountAndClaimJDK17
 
 ## Overview
 
-DroolEngineProject is a Spring Boot application that integrates the Drools rule engine to process business rules for order discounts and claim risk levels. This application allows for dynamic rule management, enabling you to define, update, and apply custom rules to orders and claims via a RESTful API.
+1. ** Spring Boot application that integrates the Drools rule engine to process business rules for order discounts and claim risk levels.
+2. This application allows for dynamic rule management, enabling you to define, update, and apply custom rules to orders and claims via a RESTful API.
 
 The project implements two key functionalities:
 
@@ -31,10 +32,28 @@ You can easily add, manage, and update rules through the provided API.
 
 ## APIs
 
-### 1. Order Discount API
+### 1. Add new rule, setting Discount
 
-- **POST** `/getDiscount`: Apply discount rules to an order.
 
+* **POST** `/rule`: Add a new rule.
+
+
+```bash
+  **Request**:
+
+    {
+      "ifcondition": "orderObject: Order(cardType == "MasterCard" && price > 4000)",
+      "thencondition": "orderObject.setDiscount(10)",
+      "version": "1"
+    }
+```
+
+### 2. Apply the new rule
+
+
+* **POST** `/getDiscount`: Apply discount rules to an order.
+
+```bash
   **Request**:
 
     {
@@ -42,7 +61,11 @@ You can easily add, manage, and update rules through the provided API.
       "cardType": "MASTERCARD",
       "price": 50000
     }
+```
 
+
+
+```bash
   **Response**:
 
     {
@@ -51,17 +74,22 @@ You can easily add, manage, and update rules through the provided API.
       "discount": 10,
       "price": 50000
     }
+```
 
-### 2. Claim Risk Evaluation API
 
-- **POST** `/api/getClaimRisk`: Evaluate the risk level of a claim.
+### 2. Claim Risk Evaluation API / Claim rules can be edited (src/main/resources/rules/claim-rules.drl)
 
+* **POST** `/api/getClaimRisk`: Evaluate the risk level of a claim.
+
+```bash
   **Request**:
 
     {
       "type": "high"
     }
+```
 
+```bash
   **Response**:
 
     {
@@ -69,21 +97,14 @@ You can easily add, manage, and update rules through the provided API.
       "riskLevel": "High",
       "message": "High risk claim detected."
     }
+```
 
-### 3. Manage Rules API
+### 3. Rule management / Storage: H2
 
-- **POST** `/rule`: Add a new rule.
 
-  **Request**:
+* **GET** `/rules`: Retrieve all rules.
 
-    {
-      "ifcondition": "orderObject: Order(cardType == "MasterCard" && price > 4000)",
-      "thencondition": "orderObject.setDiscount(50)",
-      "version": "1"
-    }
-
-- **GET** `/rules`: Retrieve all rules.
-
+```bash
   **Response**:
 
     [
@@ -94,21 +115,23 @@ You can easily add, manage, and update rules through the provided API.
         "version": 1
       }
     ]
+```
+
 
 ## Running the Application
 
 ### Prerequisites
 
-- Java 11+
+- Java 17
 - Maven
-- Docker (optional for database)
+- H2 db
 
 ### Build and Run
 
 1. Clone the repository:
 
-    git clone https://github.com/your-repo/droolEngineProject.git
-    cd droolEngineProject
+    git clone https://github.com/csabika98/DroolRuleEngineDiscountAndClaimJDK17.git
+    cd DroolRuleEngineDiscountAndClaimJDK17
 
 2. Build the project:
 
@@ -140,10 +163,3 @@ For example, to add a new rule:
 - RESTful API: For interacting with the rule engine.
 - Maven: Build and dependency management.
 
-## Contributing
-
-Contributions are welcome! Please create a pull request or submit an issue.
-
-## License
-
-This project is licensed under the MIT License.
