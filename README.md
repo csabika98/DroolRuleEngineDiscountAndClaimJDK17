@@ -129,18 +129,18 @@ You can easily add, manage, and update rules through the provided API.
 ### Build and Run
 
 1. Clone the repository:
-
-    git clone https://github.com/csabika98/DroolRuleEngineDiscountAndClaimJDK17.git
-    cd DroolRuleEngineDiscountAndClaimJDK17
-
+```bash
+ git clone https://github.com/csabika98/DroolRuleEngineDiscountAndClaimJDK17.git
+ cd DroolRuleEngineDiscountAndClaimJDK17
+```
 2. Build the project:
-
+```bash
     mvn clean install
-
+```
 3. Run the application:
-
+```bash
     mvn spring-boot:run
-
+```
 4. Access the APIs via http://localhost:8080.
 
 ## Customizing Rules
